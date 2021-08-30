@@ -1,0 +1,26 @@
+{
+  "name": "jenkins_scheduled_backup",
+  "version": "1.0.0",
+  "description": "Script for create full Jenkins Backups",
+  "repository": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node script.js",
+    "dev": "node -r dotenv/config ./script.js",
+    "test": "mocha --reporter list --timeout 100000"
+  },
+  "author": "Miguel Pazo <https://miguelpazo.com>",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.979.0",
+    "dateformat": "^4.5.1",
+    "dotenv": "^10.0.0",
+    "exec-sh": "^0.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "delay": "^5.0.0",
+    "mocha": "^9.1.1",
+    "nodemon": "^2.0.12"
+  }
+}
