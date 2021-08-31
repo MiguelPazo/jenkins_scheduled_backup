@@ -2,7 +2,7 @@
   "name": "jenkins_scheduled_backup",
   "version": "1.0.0",
   "description": "Script for create full Jenkins Backups",
-  "repository": "",
+  "repository": "https://github.com/MiguelPazo/jenkins_scheduled_backup.git",
   "main": "index.js",
   "scripts": {
     "start": "node script.js",
