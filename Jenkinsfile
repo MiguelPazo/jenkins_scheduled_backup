@@ -8,6 +8,7 @@ pipeline {
     environment {
         BACKUP_FILE_NAME = 'backup'
         BUCKET_NAME = 'bucket-name'
+        BUCKET_PREFIX = ''
     }
 
     stages {

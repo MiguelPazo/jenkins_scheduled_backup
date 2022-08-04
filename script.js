@@ -11,6 +11,7 @@ const basePath = process.env.JENKINS_HOME;
 const awsAccessKey = process.env.AWS_ACCESS_KEY_ID;
 const awsSecretKey = process.env.AWS_SECRET_ACCESS_KEY;
 const bucketName = process.env.BUCKET_NAME;
+const bucketPrefix = process.env.BUCKET_PREFIX;
 
 const directories = [
     '*.xml',
@@ -56,7 +57,7 @@ void async function () {
         });
 
         const fileContent = fs.readFileSync(`${basePath}/${backupFile}`);
-        const s3Path = dateFormat(date, "yyyy_mm");
+        const s3Path = (bucketPrefix || '') + dateFormat(date, "yyyy_mm");
 
         const params = {
             Bucket: bucketName,
