@@ -53,9 +53,9 @@ pipeline {
             }
         }
 
-        stage('Deploying serverless') {
+        stage('Executing node script') {
             steps {
-                sh 'npm run start'
+                sh 'npm run jenkins'
             }
         }
     }

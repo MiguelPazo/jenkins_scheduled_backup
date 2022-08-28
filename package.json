@@ -5,7 +5,8 @@
   "repository": "https://github.com/MiguelPazo/jenkins_scheduled_backup.git",
   "main": "index.js",
   "scripts": {
-    "start": "node script.js",
+    "jenkins": "node script_jenkins.js",
+    "sonarqube": "node script_sonar.js",
     "dev": "node -r dotenv/config ./script.js",
     "test": "mocha --reporter list --timeout 100000"
   },
