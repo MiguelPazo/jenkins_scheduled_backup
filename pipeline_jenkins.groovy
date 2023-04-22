@@ -55,7 +55,15 @@ pipeline {
 
         stage('Executing node script') {
             steps {
-                sh 'npm run jenkins'
+                script {
+                    def status = sh([returnStatus: true,
+                                     script      : 'npm run jenkins',
+                                     encoding    : 'UTF-8'])
+
+                    if (status != 0) {
+                        error "Error executing backup command"
+                    }
+                }
             }
         }
     }

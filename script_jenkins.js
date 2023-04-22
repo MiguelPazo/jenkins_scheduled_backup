@@ -38,6 +38,8 @@ void async function () {
 
     const directoriesCompress = directories.join(' ');
 
+    let catchError = false;
+
     try {
         console.log('Generating backup');
 
@@ -67,18 +69,18 @@ void async function () {
 
         let result = await s3.upload(params).promise();
 
-        await execShPromise(`rm -rf ${basePath}/${backupFile}`, true);
-
         console.log('File uploaded successfully');
         console.log(result);
     } catch (e) {
-        console.log('Error: ', e);
-        console.log('Stderr: ', e.stderr);
-        console.log('Stdout: ', e.stdout);
-
-        return e;
+        catchError = true;
+        console.error('Error: ', e);
     }
 
-    return;
+    await execShPromise(`rm -rf ${basePath}/${backupFile}`, true);
+    console.log(`Deleted local file ${basePath}/${backupFile}`);
+
+    if (catchError) {
+        process.exit(1);
+    }
 }();
 

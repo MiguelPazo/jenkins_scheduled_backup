@@ -26,12 +26,13 @@ void async function () {
         }
     }
 
-
     const date = new Date();
     const dateFormated = dateFormat(date, "yyyymmdd_HHMMss");
 
     const backupFile = `${backupFilename}-${dateFormated}.tar.gz`;
     const compressFiles = filesBackup.join(' ');
+
+    let catchError = false;
 
     try {
         console.log('Generating backup');
@@ -60,13 +61,15 @@ void async function () {
         console.log('File uploaded successfully');
         console.log(result);
     } catch (e) {
-        console.log('Error: ', e);
-        console.log('Stderr: ', e.stderr);
-        console.log('Stdout: ', e.stdout);
-
-        return e;
+        catchError = true;
+        console.error('Error: ', e);
     }
 
-    return;
+    await execShPromise(`rm -rf ${backupFile}`, true);
+    console.log(`Deleted local file ${backupFile}`);
+
+    if (catchError) {
+        process.exit(1);
+    }
 }();
 
